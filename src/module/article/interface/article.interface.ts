@@ -4,4 +4,6 @@ export interface Article{
     createdAt: number;
     updatedAt: number;
     views: number;
+    likes: number;
+    tag: string;
 }

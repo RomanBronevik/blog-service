@@ -1,17 +1,35 @@
-export class ArticleDto{
-    readonly title: string;
+import { IsString, IsInt } from "class-validator";
+
+export interface ArticleDto{
+    title: string,
+    content: string,
+    views: number,
+    like: number
 }
 
-export class UpdateArticleDto{
+export interface UpdateArticleDto{
 
 }
 
 export class CreateArticleDto{
+    @IsString()
     title: string;
+    
+    @IsString()
     content: string;
+
+    @IsString()
     tag: string;
-    createAt: number = new Date().getTime();
-    updatedAt: number = new Date().getTime();
-    views: number = 0;
-    likes: number = 0;
+
+    @IsInt()
+    createAt: number; 
+
+    @IsInt()
+    updatedAt: number;
+
+    @IsInt()
+    views: number;
+    
+    @IsInt()
+    likes: number;
 }

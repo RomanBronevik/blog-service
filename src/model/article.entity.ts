@@ -18,11 +18,11 @@ export class ArticleEntity{
     updatedAt: number;
     
     @Column()
-    views: number;
+    views: number = 0;
 
     @Column()
-    likes: number;
+    likes: number = 0;
 
     @Column()
-    tag: string
+    tag: string;
 }

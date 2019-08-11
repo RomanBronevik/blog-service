@@ -3,20 +3,30 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { ArticleEntity } from "../../model/article.entity";
 import { CreateArticleDto, UpdateArticleDto, ArticleDto } from "./dto/article.dto";
+import { IArticleService } from "./interface/article-service.interface";
+import { Article } from "./interface/article.interface";
     
 @Injectable()
-export class ArticleService{
+export class ArticleService implements IArticleService{
     constructor(
         @InjectRepository(ArticleEntity)
         private readonly ArticleRepository: Repository<ArticleEntity>
     ){}
 
-    getArticlesPaging(page: number): Promise<ArticleDto[]>{
-        return this.ArticleRepository.find({where:{limit:10, offset:page}});
+    async getArticlesPaging(page: number): Promise<Article[]>{
+        return this.ArticleRepository.find({skip: page * 10, take: 10});
     }
     
-    getArticleById(id: number): Promise<ArticleEntity[]>{
-        return this.ArticleRepository.find({where:{id}});
+    async getArticleById(id: number): Promise<Article>{
+        return this.ArticleRepository.findOneOrFail(id);
+    }
+
+    async getArticlesByTag(tag : string): Promise<Article[]>{
+        return this.ArticleRepository.find({where:{tag}});
+    }
+
+    async getArticleByArticleTitle(title: string): Promise<Article>{
+        return this.ArticleRepository.findOneOrFail({title});
     }
 
     publishArticle(article: CreateArticleDto){
@@ -28,12 +38,11 @@ export class ArticleService{
         }
         return result;
     }
-
     deleteArticleById(id: number): Promise<any>{
         return this.ArticleRepository.delete(id);
     }
 
-    updateArticle(id: number, article: UpdateArticleDto){
+    updateArticleById(id: number, article: UpdateArticleDto){
         return this.ArticleRepository.update(id, article);
     }
 }

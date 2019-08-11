@@ -14,7 +14,7 @@
     "experimentalDecorators": true,
     "allowJs": false,
     "module": "commonjs",
-    "target": "es5",
+    "target": "es6",
     "moduleResolution": "node",
     "noImplicitAny": true,
     "lib": ["dom", "es5", "es6", "es7", "es2015.promise"],
