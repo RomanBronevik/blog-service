@@ -1,35 +1,25 @@
 import { IsString, IsInt } from "class-validator";
+import { Type } from 'class-transformer';
+import { ArticleEntity } from "../../../model/article.entity";
+export class UpdateArticleDto {
 
-export interface ArticleDto{
-    title: string,
-    content: string,
-    views: number,
-    like: number
-}
-
-export interface UpdateArticleDto{
-
-}
-
-export class CreateArticleDto{
-    @IsString()
+    @IsString({ message: 'must be string' })
+    @Type(() => String)
     title: string;
-    
+
     @IsString()
     content: string;
 
     @IsString()
     tag: string;
+}
 
-    @IsInt()
-    createAt: number; 
-
-    @IsInt()
-    updatedAt: number;
-
+export class CreateArticleDto extends UpdateArticleDto {
     @IsInt()
     views: number;
-    
+
     @IsInt()
     likes: number;
 }
+
+export class ArticleDto extends ArticleEntity { }

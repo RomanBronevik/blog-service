@@ -1,28 +1,27 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Base } from "./base";
 
 @Entity('article')
-export class ArticleEntity{
-    @PrimaryGeneratedColumn()
-    id: number;
-
+export class ArticleEntity extends Base {
     @Column()
     title: string;
 
     @Column()
     content: string;
 
-    @Column()
-    createdAt: number;
+    @Column({
+        default: 0
+    })
+    views: number;
 
-    @Column()
-    updatedAt: number;
-    
-    @Column()
-    views: number = 0;
-
-    @Column()
-    likes: number = 0;
+    @Column({
+        default: 0
+    })
+    likes: number;
 
     @Column()
     tag: string;
+
+    @Column()
+    status: number;
 }

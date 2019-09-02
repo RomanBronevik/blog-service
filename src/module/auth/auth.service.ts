@@ -8,4 +8,6 @@ export class AuthService implements IAuthService{
     getUser(id: number): Promise<Auth> {
         throw new Error("Method not implemented.");
     }
+    update(){}
+    delete(){}
 }

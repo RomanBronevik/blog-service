@@ -1,41 +1,41 @@
 import { Controller, Post, Body, Get, Param, Query, Delete } from "@nestjs/common";
 import { ArticleDto, CreateArticleDto } from "./dto/article.dto";
-import { ArticleService } from "./article.service";
 import { CreateArticlePipe } from "./pipes/create_article.pipe";
 import { IdPipe } from "./pipes/id.pipe";
-
+import { IArticleService } from "./interface/article-service.interface";
+import { ArticleService } from "./article.service";
+import { permission } from "../../common/decorator/permission.decorator";
 
 @Controller('article')
-export class ArticleController{
-    constructor(private readonly articleService: ArticleService){}
-    
+export class ArticleController {
+    constructor(private readonly articleService: ArticleService) { }
     @Get()
-    async getArticles(@Query('q') q: string, @Query('type') type: string){
-        switch(type){
+    async getArticles(@Query('q') q: string, @Query('type') type: string) {
+        switch (type) {
             case 'archive':
-                break;
+                return await this.articleService.getArticleByArticleTitle(q);
             case 'tag':
-                return this.articleService.getArticlesByTag(q);
+                return await this.articleService.getArticlesByTag(q);
             case 'page':
-                const page: number = parseInt(q) || 0;
-                return this.articleService.getArticlesPaging(page);
+                return await this.articleService.getArticlesPaging(1);
             default:
-                return this.articleService.getArticlesPaging(0);
+                return await this.articleService.getArticlesPaging(0);
         }
     }
 
     @Post()
-    async publishOneArticle(@Body(new CreateArticlePipe()) article: CreateArticleDto){
-        await this.articleService.publishArticle(article);
+    @permission('admin')
+    async publishOneArticle(@Body(new CreateArticlePipe()) article: CreateArticleDto) {
+        return await this.articleService.publishArticle(article);
     }
 
     @Get(':id')
-    async getArticle(@Param('id', new IdPipe()) id: number){
-        return this.articleService.getArticleById(id);
+    async getArticle(@Param('id', new IdPipe()) id: number) {
+        return await this.articleService.getArticleById(id);
     }
-    
+
     @Delete(':id')
-    async deleteArticle(@Param('id') id: number){
-        return this.articleService.deleteArticleById(id);
+    async deleteArticle(@Param('id') id: number) {
+        return await this.articleService.deleteArticleById(id);
     }
 }

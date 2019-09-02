@@ -1,13 +1,21 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { logger } from './lib/middleware/logger.middleware';
-import { HttpExceptionFilter } from './lib/filters/httpException.filter';
+import { HttpExceptionFilter } from './common/filters/httpException.filter';
+import { ApiParamsValidationPipe } from './common/pipes/api-params-validation.pipe';
+import { Skad1ogger } from './common/logger/logger';
+import { AnyExecptionFilter } from './common/filters/anyExecption.filter';
 
 async function bootstrap() {
+
   const app = await NestFactory.create(AppModule);
-  app.use(logger);
+  const logger = app.get(Skad1ogger);
+  // app.useLogger(logger);
+  app.useGlobalPipes(new ApiParamsValidationPipe());
   app.useGlobalFilters(new HttpExceptionFilter());
-  await app.listen(8443, ()=>{console.log('server is running on port 8443..')});
+  app.useGlobalFilters(new AnyExecptionFilter());
+  logger.log('server is running on port 8443')
+  await app.listen(8443, () => { console.log('server is running on port 8443') });
+
 }
 
 bootstrap();
