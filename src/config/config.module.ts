@@ -1,8 +1,8 @@
 import { Module } from "@nestjs/common";
-import { Scad1Conf } from "./config.service";
+import { Skad1Conf } from "./config.service";
 
 @Module({
-    providers: [Scad1Conf],
-    exports: [Scad1Conf]
+    providers: [Skad1Conf],
+    exports: [Skad1Conf]
 })
 export class ConfigModule { }

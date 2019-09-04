@@ -1,9 +1,8 @@
-import { Injectable } from "@nestjs/common";
 import { Auth } from "./auth.interface";
 
 
 export interface IAuthService {
-    getUser(id: number): Promise<Auth>;
-    delete(): void;
+    getInfo(id: number): Promise<any>;
+    delete(id: number): Promise<any>
     update(): void;
 }

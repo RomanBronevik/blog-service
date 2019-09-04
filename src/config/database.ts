@@ -9,5 +9,6 @@ export const DatabaseConfig: TypeOrmModuleOptions = {
   "password": "123456",
   "database": "kyaruary",
   "entities": [join(__dirname, '../', '**/**.entity{.ts,.js}')],
-  "synchronize": true
+  "synchronize": true,
+  "logging": false
 }

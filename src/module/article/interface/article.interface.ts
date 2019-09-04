@@ -4,3 +4,5 @@ export interface ISearchResult {
     data: ArticleDto[];
     count: number;
 }
+
+

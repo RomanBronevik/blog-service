@@ -1,9 +1,9 @@
 import { Controller, Get } from "@nestjs/common";
 
 @Controller()
-export class AppController{
+export class AppController {
     @Get()
-    homepage(){
-        return 'http://api.kyaruary.com';
+    homepage() {
+        return '<a href="http://api.kyaruary.com">http://api.kyaruary.com</a>';
     }
 }

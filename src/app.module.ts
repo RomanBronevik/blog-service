@@ -6,6 +6,7 @@ import { TagModule } from './module/tag/tag.module';
 import { CommentModule } from './module/comment/comment.module';
 import { AppController } from './app.controller';
 import { LoggerModule } from './common/logger/logger.module';
+import { ExceptionFactoryModule } from './common/lib/ExceptionFactory/factory.module';
 
 @Module({
   imports: [
@@ -14,7 +15,8 @@ import { LoggerModule } from './common/logger/logger.module';
     connection,
     TagModule,
     CommentModule,
-    LoggerModule
+    LoggerModule,
+    ExceptionFactoryModule
   ],
   controllers: [AppController]
 })

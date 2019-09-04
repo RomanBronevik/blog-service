@@ -1,4 +1,5 @@
-import { defaultConfig } from './default.config';
+import { devConfig } from './dev.config';
 import { envConfig } from './env.config';
 
-export const config = Object.assign(defaultConfig, envConfig);
+
+export const config = envConfig.env === undefined ? devConfig : envConfig;

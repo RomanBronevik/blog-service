@@ -1,12 +1,15 @@
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany, ManyToMany } from "typeorm";
 import { Base } from "./base";
+import { TagEntity } from "./tag.entity";
 
 @Entity('article')
 export class ArticleEntity extends Base {
     @Column()
     title: string;
 
-    @Column()
+    @Column({
+        type: 'text'
+    })
     content: string;
 
     @Column({
@@ -19,9 +22,16 @@ export class ArticleEntity extends Base {
     })
     likes: number;
 
-    @Column()
-    tag: string;
-
-    @Column()
+    @Column({
+        default: 0
+    })
     status: number;
+
+    @Column({
+        default: null
+    })
+    thumbnail: string;
+
+    @ManyToMany(type => TagEntity)
+    tags: TagEntity[]
 }

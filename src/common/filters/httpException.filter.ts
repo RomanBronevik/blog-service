@@ -14,8 +14,10 @@ export class HttpExceptionFilter extends BaseExceptionFilter {
         const status = exception.getStatus();
         if (exception instanceof ApiExecption) {
             res.status(status).send({
-                ...exception
+                errorMessage: exception.errorMessage,
+                code: exception.errorCode
             })
+            return;
         }
         res.status(status)
             .json({
@@ -23,5 +25,6 @@ export class HttpExceptionFilter extends BaseExceptionFilter {
                 date: +new Date(),
                 path: req.url
             })
+        return;
     }
 }

@@ -1,5 +1,7 @@
-import { LoggerService, Logger } from "@nestjs/common";
+import { LoggerService, Logger, Injectable } from "@nestjs/common";
 import { configure, getLogger, Configuration } from 'log4js';
+
+@Injectable()
 export class Skad1ogger implements LoggerService {
     private logger = getLogger();
     constructor() {
@@ -14,6 +16,9 @@ export class Skad1ogger implements LoggerService {
     }
     error(message: string, trace: string) {
         this.logger.error(message, trace);
+    }
+    info(message: string) {
+        this.logger.info(message);
     }
 }
 

@@ -1,12 +1,20 @@
 {
-  "include": ["src/**/*",],
-  "exclude": ["node_modules", "**/*.spec.ts", "dist"],
+  "include": [
+    "src/**/*",
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.spec.ts",
+    "dist"
+  ],
   "compilerOptions": {
     "esModuleInterop": true,
     "rootDir": "src",
     "baseUrl": "./",
     "outDir": "./dist",
-    "typeRoots": ["node_modules/@types"],
+    "typeRoots": [
+      "node_modules/@types"
+    ],
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
     "strict": true,
@@ -17,7 +25,13 @@
     "target": "es6",
     "moduleResolution": "node",
     "noImplicitAny": true,
-    "lib": ["dom", "es5", "es6", "es7", "es2015.promise"],
+    "lib": [
+      "dom",
+      "es5",
+      "es6",
+      "es7",
+      "es2015.promise"
+    ],
     "sourceMap": true,
     "pretty": true
   }

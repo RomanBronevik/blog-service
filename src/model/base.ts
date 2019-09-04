@@ -1,20 +1,20 @@
 import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
 import { Expose } from "class-transformer";
 
-@Entity('article')
+@Entity()
 export class Base {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column({
         type: 'bigint',
-        default: Math.floor(+ new Date() / 1000)
+        default: Math.floor(+ new Date())
     })
     createdAt: number;
 
     @Column({
         type: 'bigint',
-        default: Math.floor(+ new Date() / 1000)
+        default: Math.floor(+ new Date())
     })
     updatedAt: number;
 }
