@@ -1,10 +1,14 @@
 import { Document } from 'mongoose';
+import { CreateUserDto } from '../dto/auth.dto';
 export interface IAuthService {
-  getUser(): Promise<User[]>;
-  add(): Promise<User>;
+  add(user: CreateUserDto): Promise<UserModel>;
+  validate(username, password): boolean;
+  remove(ids: string[]): Promise<UserModel>;
+  search(keywords: string): Promise<UserModel[]>;
+  findOneById(): Promise<UserModel>;
 }
 
-export interface User extends Document {
+export interface UserModel extends Document {
   id: string;
   name: string;
   password: string;

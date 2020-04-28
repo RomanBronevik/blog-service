@@ -16,3 +16,15 @@ export class ApiException extends HttpException {
     return this.errorMessage;
   }
 }
+
+export function UnauthorizationException() {
+  return new ApiException(ApiCode.UNAUTH, '账号或者密码错误');
+}
+
+export function NotFoundException() {
+  return new ApiException(ApiCode.NOTFOUND, '找不到指定资源');
+}
+
+export function InvalideArgsException(message = '非法参数') {
+  return new ApiException(ApiCode.INVALIDE, message);
+}

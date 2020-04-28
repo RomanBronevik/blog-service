@@ -1,18 +1,17 @@
-import { Controller, Get, Post } from '@nestjs/common';
-import { IAuthService } from './interface/auth.interface';
+import { Controller, Get, Req, Put } from '@nestjs/common';
 import { AuthService } from './auth.service';
 
-@Controller('auth')
+@Controller('auth/user')
 export class AuthController {
   constructor(private as: AuthService) {}
 
-  @Get('user')
-  async getUser() {
-    return await this.as.getUser();
+  @Get('')
+  async getUser(@Req() req) {
+    console.log(req.$$user);
   }
 
-  @Get('add')
+  @Put('')
   async add() {
-    return await this.as.add();
+    //pass
   }
 }

@@ -9,6 +9,9 @@ export class AuthGuard implements CanActivate {
     const path = request.raw.originalUrl;
     const method = request.raw.method;
     console.log(path, method);
+    request.$$user = {
+      name: 'kyar',
+    };
     if (token) {
       console.log('登录账号');
     } else {
@@ -17,5 +20,3 @@ export class AuthGuard implements CanActivate {
     return true;
   }
 }
-
-function canPass() {}
