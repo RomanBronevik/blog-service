@@ -28,3 +28,7 @@ export function NotFoundException() {
 export function InvalideArgsException(message = '非法参数') {
   return new ApiException(ApiCode.INVALIDE, message);
 }
+
+export function AlreadyExistedExceptopn(message = '用户已存在') {
+  return new ApiException(ApiCode.EXISTED, message);
+}

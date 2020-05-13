@@ -3,4 +3,5 @@ export enum ApiCode {
   UNAUTH = 40000,
   INVALIDE = 40001,
   NOTFOUND = 40004,
+  EXISTED = 40005,
 }
